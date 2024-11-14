@@ -7,8 +7,8 @@ import java.util.Iterator;
  * Simple binary trees.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
- * @author Your Name Here
+ * @author Richard Lin
+ * @author Maral BE
  *
  * @param <T>
  *   The type of value stored in the tree.
@@ -116,7 +116,7 @@ public class BinaryTree<T> implements Iterable<T> {
    * Build a tree from a subarray from lb (inclusive) to ub (exclusive).
    *
    * @param values
-   *   The array from which to draw values.
+   *   The array from which to draw values.String
    * @param lb
    *   The lower bound of the subarray (inclusive).
    * @param ub
@@ -136,5 +136,37 @@ public class BinaryTree<T> implements Iterable<T> {
           makeTree(values, mid + 1, ub));
     } // if/else
   } // makeTree(T[], int, int)
+
+  private void element01Helper(PrintWriter pen, BinaryTreeNode<T> node) {
+    if (node != null) {
+      pen.print(node.value + " ");
+      if ((node.left != null) || (node.right != null)) {
+        element01Helper(pen, node.left);
+        element01Helper(pen, node.right);
+      } // if has children
+    } // else
+  } // dump
+
+  public void element01(PrintWriter pen) {
+    element01Helper(pen, this.root);
+    pen.println();
+  }
+
+  public void element02(PrintWriter pen) {
+    element02Helper(pen, this.root);
+        pen.println();
+      }
+    
+  private void element02Helper(PrintWriter pen, BinaryTreeNode<T> node) {
+    if (node != null) {
+      if (node.left != null) {
+        element02Helper(pen, node.left);
+      }
+        pen.print(node.value + " ");
+      if ((node.right != null)) {
+        element02Helper(pen, node.right);
+      } // if has children
+    } // else
+  }
 
 } // class BinaryTree
